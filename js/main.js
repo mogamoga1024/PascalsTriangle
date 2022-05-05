@@ -13,7 +13,14 @@ const viewModel = {
             max: 1024
         }
     },
-    created() {
+    mounted() {
+        const params = new URL(window.location.href).searchParams;
+        const strMod = params.get("mod");
+        const strColCount = params.get("colCount");
+
+        if (strMod !== null) this.blurMod(strMod);
+        if (strColCount !== null) this.blurColCount(strColCount);
+
         this.initPascalsTriangle(this.colCount);
     },
     methods: {
@@ -39,9 +46,8 @@ const viewModel = {
                 prevNums = nums;
             }
         },
-        blurMod(event) {
-            const strNum = event.target.value;
-            if (event.target.validity.stepMismatch) {
+        blurMod(strNum) {
+            if (/^-?\d+$/.test(strNum) === false) {
                 this.$refs.inputMod.value = this.mod;
                 return;
             }
@@ -59,9 +65,8 @@ const viewModel = {
             }
             this.initPascalsTriangle(this.colCount);
         },
-        blurColCount(event) {
-            const strNum = event.target.value;
-            if (event.target.validity.stepMismatch) {
+        blurColCount(strNum) {
+            if (/^-?\d+$/.test(strNum) === false) {
                 this.$refs.inputColCount.value = this.colCount;
                 return;
             }

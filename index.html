@@ -10,8 +10,8 @@
 </head>
 <body>
     <div id="app">
-        <label>割る数</label><input type="number" ref="inputMod" :value="mod" :min="min" :max="max" @blur="blurMod($event)"><br>
-        <label>行数</label><input type="number" ref="inputColCount" :value="colCount" :min="min" :max="max" @blur="blurColCount($event)">
+        <label>割る数</label><input type="number" ref="inputMod" :value="mod" :min="min" :max="max" @blur="blurMod($event.target.value)"><br>
+        <label>行数</label><input type="number" ref="inputColCount" :value="colCount" :min="min" :max="max" @blur="blurColCount($event.target.value)">
         <template v-for="nums in pascalsTriangle">
             <Isigaki :nums="nums" :mod="mod"></Isigaki>
         </template>
