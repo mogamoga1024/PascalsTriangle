@@ -30,8 +30,7 @@ const viewModel = {
                         nums.push(this.baseNum);
                     }
                     else {
-                        const num = (prevNums[j] + prevNums[j + 1]) % this.mod;
-                        nums.push(num);
+                        nums.push((prevNums[j] + prevNums[j + 1]) % this.mod);
                     }
                 }
                 this.pascalsTriangle.push(nums);
