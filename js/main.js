@@ -8,11 +8,13 @@ const viewModel = {
             pascalsTriangle: [[]],
             baseNum: 1,
             mod: 2,
-            maxColCount: 512
+            colCount: 512,
+            min: 0,
+            max: 1024
         }
     },
     created() {
-        this.initPascalsTriangle(this.maxColCount);
+        this.initPascalsTriangle(this.colCount);
     },
     methods: {
         initPascalsTriangle(colCount) {
@@ -36,16 +38,46 @@ const viewModel = {
                 this.pascalsTriangle.push(nums);
                 prevNums = nums;
             }
-
-            return;
-        }
-    },
-    watch: {
-        mod() {
-            this.initPascalsTriangle(this.maxColCount);
         },
-        maxColCount() {
-            this.initPascalsTriangle(this.maxColCount);
+        blurMod(event) {
+            const strNum = event.target.value;
+            if (event.target.validity.stepMismatch) {
+                this.$refs.inputMod.value = this.mod;
+                return;
+            }
+            const num = Number(strNum);
+            if (num < this.min) {
+                this.$refs.inputMod.value = this.min;
+                this.mod = this.min;
+            }
+            else if (num > this.max) {
+                this.$refs.inputMod.value = this.max;
+                this.mod = this.max;
+            }
+            else {
+                this.mod = num;
+            }
+            this.initPascalsTriangle(this.colCount);
+        },
+        blurColCount(event) {
+            const strNum = event.target.value;
+            if (event.target.validity.stepMismatch) {
+                this.$refs.inputColCount.value = this.colCount;
+                return;
+            }
+            const num = Number(strNum);
+            if (num < this.min) {
+                this.$refs.inputColCount.value = this.min;
+                this.colCount = this.min;
+            }
+            else if (num > this.max) {
+                this.$refs.inputColCount.value = this.max;
+                this.colCount = this.max;
+            }
+            else {
+                this.colCount = num;
+            }
+            this.initPascalsTriangle(this.colCount);
         }
     }
 };
