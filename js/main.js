@@ -7,11 +7,12 @@ const viewModel = {
         return {
             pascalsTriangle: [[]],
             baseNum: 1,
-            mod: 2
+            mod: 2,
+            maxColCount: 512
         }
     },
     created() {
-        this.initPascalsTriangle(1200);
+        this.initPascalsTriangle(this.maxColCount);
     },
     methods: {
         initPascalsTriangle(colCount) {
@@ -38,6 +39,14 @@ const viewModel = {
             }
 
             return;
+        }
+    },
+    watch: {
+        mod() {
+            this.initPascalsTriangle(this.maxColCount);
+        },
+        maxColCount() {
+            this.initPascalsTriangle(this.maxColCount);
         }
     }
 };

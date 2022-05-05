@@ -10,6 +10,8 @@
 </head>
 <body>
     <div id="app">
+        割る数 <input type="number" v-model="mod"><br>
+        行数 <input type="number" v-model="maxColCount">
         <template v-for="nums in pascalsTriangle">
             <Isigaki :nums="nums" :mod="mod"></Isigaki>
         </template>
