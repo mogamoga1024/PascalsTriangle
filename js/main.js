@@ -5,11 +5,12 @@ const viewModel = {
     },
     data() {
         return {
-            pascalsTriangle: [[]]
+            pascalsTriangle: [[]],
+            mod: 2
         }
     },
     created() {
-        this.initPascalsTriangle(30);
+        this.initPascalsTriangle(32);
     },
     methods: {
         initPascalsTriangle(colCount) {
