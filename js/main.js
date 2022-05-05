@@ -7,11 +7,11 @@ const viewModel = {
         return {
             pascalsTriangle: [[]],
             baseNum: 1,
-            mod: 6
+            mod: 2
         }
     },
     created() {
-        this.initPascalsTriangle(300);
+        this.initPascalsTriangle(1200);
     },
     methods: {
         initPascalsTriangle(colCount) {

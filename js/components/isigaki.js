@@ -7,7 +7,7 @@ const Isigaki = {
     template: `
         <div class="row">
             <template v-for="num in nums">
-                <div :class="{ black: num % mod !== 0 }">{{ num }}</div>
+                <div :class="{ black: num % mod !== 0 }"></div>
             </template>
         </div>
     `

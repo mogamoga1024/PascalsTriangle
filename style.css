@@ -1,20 +1,16 @@
 
 .row {
-    height: 10px;
-    font-size: 10px;
-    line-height: 10px;
+    height: 1px;
     display: flex;
     justify-content: center;
 }
 
 .row div {
-    width: 10px;
+    width: 1px;
     height: 100%;
-    text-align: center;
 }
 
 .row div.black {
-    color: white;
     background-color: black;
 }
 
