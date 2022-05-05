@@ -1,0 +1,5 @@
+
+const Isigaki = {
+    template: "hogehoge"
+};
+
