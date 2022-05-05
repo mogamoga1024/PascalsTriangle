@@ -10,10 +10,9 @@
 </head>
 <body>
     <div id="app">
-        <Isigaki :nums="[1]"></Isigaki>
-        <Isigaki :nums="[1, 1]"></Isigaki>
-        <Isigaki :nums="[1, 2, 1]"></Isigaki>
-        <Isigaki :nums="[1, 3, 3, 1]"></Isigaki>
+        <template v-for="nums in pascalsTriangle">
+            <Isigaki :nums="nums"></Isigaki>
+        </template>
     </div>
 
     <script src="js/components/isigaki.js"></script>
