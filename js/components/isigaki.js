@@ -1,5 +1,9 @@
 
 const Isigaki = {
-    template: "hogehoge"
+    template: `
+        <div class="row">
+            <div>1</div>
+        </div>
+    `
 };
 
