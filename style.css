@@ -6,6 +6,10 @@ label {
     text-align: right;
 }
 
+input {
+    width: 80px;
+}
+
 .row {
     height: 1px;
     display: flex;

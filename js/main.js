@@ -8,9 +8,11 @@ const viewModel = {
             pascalsTriangle: [[]],
             baseNum: 1,
             mod: 2,
+            minMod: 0,
+            maxMod: Number.MAX_SAFE_INTEGER,
             colCount: 512,
-            min: 0,
-            max: 1024
+            minColCount: 0,
+            maxColCount: 1024
         }
     },
     mounted() {
@@ -52,13 +54,13 @@ const viewModel = {
                 return;
             }
             const num = Number(strNum);
-            if (num < this.min) {
-                this.$refs.inputMod.value = this.min;
-                this.mod = this.min;
+            if (num < this.minMod) {
+                this.$refs.inputMod.value = this.minMod;
+                this.mod = this.minMod;
             }
-            else if (num > this.max) {
-                this.$refs.inputMod.value = this.max;
-                this.mod = this.max;
+            else if (num > this.maxMod) {
+                this.$refs.inputMod.value = this.maxMod;
+                this.mod = this.maxMod;
             }
             else {
                 this.mod = num;
@@ -71,13 +73,13 @@ const viewModel = {
                 return;
             }
             const num = Number(strNum);
-            if (num < this.min) {
-                this.$refs.inputColCount.value = this.min;
-                this.colCount = this.min;
+            if (num < this.minColCount) {
+                this.$refs.inputColCount.value = this.minColCount;
+                this.colCount = this.minColCount;
             }
-            else if (num > this.max) {
-                this.$refs.inputColCount.value = this.max;
-                this.colCount = this.max;
+            else if (num > this.maxColCount) {
+                this.$refs.inputColCount.value = this.maxColCount;
+                this.colCount = this.maxColCount;
             }
             else {
                 this.colCount = num;
