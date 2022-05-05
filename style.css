@@ -1,12 +1,14 @@
 
 .row {
-    height: 1.5em;
+    height: 10px;
+    font-size: 10px;
+    line-height: 10px;
     display: flex;
     justify-content: center;
 }
 
 .row div {
-    width: 30px;
+    width: 10px;
     height: 100%;
     text-align: center;
 }

@@ -6,16 +6,16 @@ const viewModel = {
     data() {
         return {
             pascalsTriangle: [[]],
-            mod: 2
+            baseNum: 1,
+            mod: 6
         }
     },
     created() {
-        this.initPascalsTriangle(32);
+        this.initPascalsTriangle(300);
     },
     methods: {
         initPascalsTriangle(colCount) {
-            const baseNum = 1;
-            let prevNums = [baseNum];
+            let prevNums = [this.baseNum];
             this.pascalsTriangle = [prevNums];
             
             if (colCount <= 1) {
@@ -23,13 +23,13 @@ const viewModel = {
             }
 
             for (let i = 1; i < colCount; i++) {
-                const nums = [baseNum];
+                const nums = [this.baseNum];
                 for (let j = 0; j < i; j++) {
                     if (j === i - 1) {
-                        nums.push(baseNum);
+                        nums.push(this.baseNum);
                     }
                     else {
-                        const num = (prevNums[j] + prevNums[j + 1]) % 2;
+                        const num = (prevNums[j] + prevNums[j + 1]) % this.mod;
                         nums.push(num);
                     }
                 }
