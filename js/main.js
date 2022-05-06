@@ -10,31 +10,31 @@ const viewModel = {
             mod: 2,
             minMod: 0,
             maxMod: Number.MAX_SAFE_INTEGER,
-            colCount: 512,
-            minColCount: 0,
-            maxColCount: 1024
+            rowCount: 512,
+            minRowCount: 0,
+            maxRowCount: 1024
         }
     },
     mounted() {
         const params = new URL(window.location.href).searchParams;
         const strMod = params.get("mod");
-        const strColCount = params.get("colCount");
+        const strRowCount = params.get("rowCount");
 
         if (strMod !== null) this.blurMod(strMod);
-        if (strColCount !== null) this.blurColCount(strColCount);
+        if (strRowCount !== null) this.blurRowCount(strRowCount);
 
-        this.initPascalsTriangle(this.colCount);
+        this.initPascalsTriangle(this.rowCount);
     },
     methods: {
-        initPascalsTriangle(colCount) {
+        initPascalsTriangle(rowCount) {
             let prevNums = [this.baseNum];
             this.pascalsTriangle = [prevNums];
             
-            if (colCount <= 1) {
+            if (rowCount <= 1) {
                 return;
             }
 
-            for (let i = 1; i < colCount; i++) {
+            for (let i = 1; i < rowCount; i++) {
                 const nums = [this.baseNum];
                 for (let j = 0; j < i; j++) {
                     if (j === i - 1) {
@@ -65,26 +65,26 @@ const viewModel = {
             else {
                 this.mod = num;
             }
-            this.initPascalsTriangle(this.colCount);
+            this.initPascalsTriangle(this.rowCount);
         },
-        blurColCount(strNum) {
+        blurRowCount(strNum) {
             if (/^-?\d+$/.test(strNum) === false) {
-                this.$refs.inputColCount.value = this.colCount;
+                this.$refs.inputRowCount.value = this.rowCount;
                 return;
             }
             const num = Number(strNum);
-            if (num < this.minColCount) {
-                this.$refs.inputColCount.value = this.minColCount;
-                this.colCount = this.minColCount;
+            if (num < this.minRowCount) {
+                this.$refs.inputRowCount.value = this.minRowCount;
+                this.rowCount = this.minRowCount;
             }
-            else if (num > this.maxColCount) {
-                this.$refs.inputColCount.value = this.maxColCount;
-                this.colCount = this.maxColCount;
+            else if (num > this.maxRowCount) {
+                this.$refs.inputRowCount.value = this.maxRowCount;
+                this.rowCount = this.maxRowCount;
             }
             else {
-                this.colCount = num;
+                this.rowCount = num;
             }
-            this.initPascalsTriangle(this.colCount);
+            this.initPascalsTriangle(this.rowCount);
         }
     }
 };
