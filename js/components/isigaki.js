@@ -21,8 +21,5 @@ const Isigaki = {
                 </template>
             </div>
         </template>
-    `,
-    created() {
-        console.log(this.isKi);
-    }
+    `
 };
