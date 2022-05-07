@@ -7,13 +7,47 @@ const viewModel = {
         return {
             pascalsTriangle: [[]],
             baseNum: 1,
-            mod: 2,
+            _mod: 2,
             minMod: 0,
             maxMod: Number.MAX_SAFE_INTEGER,
-            rowCount: 512,
+            _rowCount: 512,
             minRowCount: 0,
             maxRowCount: 1024,
             isKi: false
+        }
+    },
+    computed: {
+        mod: {
+            get() {
+                return this._mod;
+            },
+            set(newMod) {
+                if (newMod < this.minMod) {
+                    this._mod = this.minMod;
+                }
+                else if (newMod > this.maxMod) {
+                    this._mod = this.maxMod;
+                }
+                else {
+                    this._mod = newMod;
+                }
+            }
+        },
+        rowCount: {
+            get() {
+                return this._rowCount;
+            },
+            set(newRowCount) {
+                if (newRowCount < this.minRowCount) {
+                    this._rowCount = this.minRowCount;
+                }
+                else if (newRowCount > this.maxRowCount) {
+                    this._rowCount = this.maxRowCount;
+                }
+                else {
+                    this._rowCount = newRowCount;
+                }
+            }
         }
     },
     mounted() {
@@ -22,21 +56,25 @@ const viewModel = {
         const strRowCount = params.get("rowCount");
         this.isKi = params.get("ki") === "true";
 
-        if (strMod !== null) this.blurMod(strMod);
-        if (strRowCount !== null) this.blurRowCount(strRowCount);
+        if (strMod !== null && this.canStrToInt(strMod)) {
+            this.mod = Number(strMod);
+        }
+        if (strRowCount !== null && this.canStrToInt(strRowCount)) {
+            this.rowCount = Number(strRowCount);
+        }
 
-        this.initPascalsTriangle(this.rowCount);
+        this.createPascalsTriangle();
     },
     methods: {
-        initPascalsTriangle(rowCount) {
+        createPascalsTriangle() {
             let prevNums = [this.baseNum];
             this.pascalsTriangle = [prevNums];
             
-            if (rowCount <= 1) {
+            if (this.rowCount <= 1) {
                 return;
             }
 
-            for (let i = 1; i < rowCount; i++) {
+            for (let i = 1; i < this.rowCount; i++) {
                 const nums = [this.baseNum];
                 for (let j = 0; j < i; j++) {
                     if (j === i - 1) {
@@ -51,42 +89,25 @@ const viewModel = {
             }
         },
         blurMod(strNum) {
-            if (/^-?\d+$/.test(strNum) === false) {
+            if (this.canStrToInt(strNum) === false) {
                 this.$refs.inputMod.value = this.mod;
                 return;
             }
-            const num = Number(strNum);
-            if (num < this.minMod) {
-                this.$refs.inputMod.value = this.minMod;
-                this.mod = this.minMod;
-            }
-            else if (num > this.maxMod) {
-                this.$refs.inputMod.value = this.maxMod;
-                this.mod = this.maxMod;
-            }
-            else {
-                this.mod = num;
-            }
-            this.initPascalsTriangle(this.rowCount);
+            this.mod = Number(strNum);
+            this.$refs.inputMod.value = this.mod;
+            this.createPascalsTriangle(this.rowCount);
         },
         blurRowCount(strNum) {
-            if (/^-?\d+$/.test(strNum) === false) {
+            if (this.canStrToInt(strNum) === false) {
                 this.$refs.inputRowCount.value = this.rowCount;
                 return;
             }
-            const num = Number(strNum);
-            if (num < this.minRowCount) {
-                this.$refs.inputRowCount.value = this.minRowCount;
-                this.rowCount = this.minRowCount;
-            }
-            else if (num > this.maxRowCount) {
-                this.$refs.inputRowCount.value = this.maxRowCount;
-                this.rowCount = this.maxRowCount;
-            }
-            else {
-                this.rowCount = num;
-            }
-            this.initPascalsTriangle(this.rowCount);
+            this.rowCount = Number(strNum);
+            this.$refs.inputRowCount.value = this.rowCount;
+            this.createPascalsTriangle(this.rowCount);
+        },
+        canStrToInt(str) {
+            return /^-?\d+$/.test(str);
         }
     }
 };
