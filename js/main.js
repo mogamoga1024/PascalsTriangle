@@ -12,13 +12,15 @@ const viewModel = {
             maxMod: Number.MAX_SAFE_INTEGER,
             rowCount: 512,
             minRowCount: 0,
-            maxRowCount: 1024
+            maxRowCount: 1024,
+            isKi: false
         }
     },
     mounted() {
         const params = new URL(window.location.href).searchParams;
         const strMod = params.get("mod");
         const strRowCount = params.get("rowCount");
+        this.isKi = params.get("ki") === "true";
 
         if (strMod !== null) this.blurMod(strMod);
         if (strRowCount !== null) this.blurRowCount(strRowCount);

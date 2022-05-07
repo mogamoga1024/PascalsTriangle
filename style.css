@@ -21,6 +21,17 @@ input {
     height: 100%;
 }
 
+.row-ki {
+    height: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.row-ki div {
+    width: 12px;
+    height: 100%;
+}
+
 .row div.black {
     background-color: black;
 }
