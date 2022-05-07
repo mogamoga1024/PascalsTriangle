@@ -13,7 +13,7 @@
         <label>割る数</label><input type="number" ref="inputMod" :value="mod" :min="minMod" :max="maxMod" @blur="blurMod($event.target.value)"><br>
         <label>行数</label><input type="number" ref="inputRowCount" :value="rowCount" :min="minRowCount" :max="maxRowCount" @blur="blurRowCount($event.target.value)">
         <template v-for="nums in pascalsTriangle">
-            <Isigaki :nums="nums" :mod="mod" :isKi="isKi"></Isigaki>
+            <Isigaki :nums="nums" :mod="mod" :is-ki="isKi"></Isigaki>
         </template>
     </div>
 
