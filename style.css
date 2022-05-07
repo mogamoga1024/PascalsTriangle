@@ -22,14 +22,15 @@ input {
 }
 
 .row-ki {
-    height: 12px;
+    height: 16px;
     display: flex;
     justify-content: center;
 }
 
 .row-ki div {
-    width: 12px;
+    width: 16px;
     height: 100%;
+    font-size: 16px;
 }
 
 .row div.black {
